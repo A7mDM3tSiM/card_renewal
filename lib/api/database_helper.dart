@@ -165,7 +165,7 @@ class DatabaseHelper {
       Uri.parse("http://maisala7.pythonanywhere.com/Payment_confirmation"),
     );
 
-    request.headers.addAll({"Authorization": "Bearer $token"});
+    request.headers.addAll({"Authorization": "token $token"});
     request.fields.addAll({"process_number": "12345"});
     request.files.add(mFile);
 
