@@ -142,31 +142,16 @@ class DatabaseHelper {
     var mFile = MultipartFile.fromBytes(
       "payment_Notification",
       File(file?.path ?? "").readAsBytesSync(),
-      filename: file?.name.split("/").last,
+      filename: "Notification Image",
     );
-
-    // Uri myUrl = Uri(
-    //   scheme: 'http',
-    //   host: 'maisala7.pythonanywhere.com',
-    //   path: 'Payment_confirmation/',
-    // );
-
-    // final response = await http.post(
-    //   myUrl,
-    //   headers: {'Authorization': 'token $value'},
-    //   body: {
-    //     "process_number": "123456",
-    //     "payment_Notification": file,
-    //   },
-    // );
 
     var request = MultipartRequest(
       'POST',
-      Uri.parse("http://maisala7.pythonanywhere.com/Payment_confirmation"),
+      Uri.parse("http://maisala7.pythonanywhere.com/Payment_confirmation/"),
     );
 
-    request.headers.addAll({"Authorization": "token $token"});
-    request.fields.addAll({"process_number": "12345"});
+    request.headers["Authorization"] = "token $value";
+    request.fields["process_number"] = "12345";
     request.files.add(mFile);
 
     var response = await request.send();
