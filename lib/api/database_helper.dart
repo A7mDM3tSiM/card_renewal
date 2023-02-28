@@ -135,16 +135,19 @@ class DatabaseHelper {
 
     final picker = ImagePicker();
 
+    // use the image picker to pick image from Gallery
     var file = await picker.pickImage(
       source: ImageSource.gallery,
     );
 
+    // convert the picked image to Multipart file to upload using http
     var mFile = MultipartFile.fromBytes(
       "payment_Notification",
       File(file?.path ?? "").readAsBytesSync(),
       filename: "Notification Image",
     );
 
+    // send the request
     var request = MultipartRequest(
       'POST',
       Uri.parse("http://maisala7.pythonanywhere.com/Payment_confirmation/"),
